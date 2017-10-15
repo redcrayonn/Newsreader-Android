@@ -55,27 +55,13 @@ public class UserLogin extends AppCompatActivity implements View.OnClickListener
         String username = usernameText.getText().toString();
         String password = passwordText.getText().toString();
 
-        // Input validation
-        if (TextUtils.isEmpty(username)) {
-            errorText.setText(R.string.password_error);
+        if(TextUtils.isEmpty(username)) {
+            errorText.setText(R.string.username_error);
             errorText.setVisibility(View.VISIBLE);
             return;
         }
-        // Disable the login button to prevent
         loginButton.setEnabled(false);
 
-        loading = true;
-        // Show the loading icon
-        progressBar.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if (loading) {
-                    progressBar.setVisibility(View.VISIBLE);
-                }
-            }
-        }, 1);
-
-        // Login
         userService.login(username, password).enqueue(this);
     }
 
@@ -86,16 +72,13 @@ public class UserLogin extends AppCompatActivity implements View.OnClickListener
             LoginResult result = response.body();
 
             if (result != null) {
-                // success notification
                 Toast.makeText(this, getResources().getText(R.string.login), Toast.LENGTH_SHORT).show();
 
-                // save authtoken for authorisation with user based api calls
                 User.setAuthtoken(result.getAuthToken());
 
                 setResult(RESULT_OK);
                 finish();
             } else {
-                // error notification
                 Toast.makeText(this, getResources().getText(R.string.error), Toast.LENGTH_SHORT).show();
                 resetLoginAttempt();
             }
@@ -110,10 +93,8 @@ public class UserLogin extends AppCompatActivity implements View.OnClickListener
         Resources resources = getResources();
         String message = resources.getString(R.string.login_error, t.getLocalizedMessage());
 
-        // error notification
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
 
-        // reset view elements where needed
         resetLoginAttempt();
     }
 

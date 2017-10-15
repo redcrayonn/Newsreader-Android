@@ -54,20 +54,15 @@ public class ArticlesDetail extends AppCompatActivity implements View.OnClickLis
 
         context = this;
 
-        // setup services
         WebClient rest = new WebClient();
         articleService = rest.createArticleService();
-
-        // setup views
         initViews();
 
-        // Get data from intent passed by mainactivity
         Intent intent = getIntent();
         article = intent.getParcelableExtra(ArticlesMain.INTENT_ARTICLE);
 
         if (article == null) return;
 
-        // fill views
         String url = article.getImage();
         Picasso.with(this).load(url).into(imageView);
         DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss", Locale.getDefault());
@@ -78,28 +73,14 @@ public class ArticlesDetail extends AppCompatActivity implements View.OnClickLis
     }
 
     private void initViews() {
-        // Get view elements
-        imageView = findViewById(R.id.article_image);
-        publishView = findViewById(R.id.article_publish_date);
-        titleView = findViewById(R.id.article_title);
-        summaryView = findViewById(R.id.article_summary);
-
-        // read more Button
         Button readMoreBtn = findViewById(R.id.read_more_btn);
         readMoreBtn.setOnClickListener(this);
 
-        // like Button
         likeButton = findViewById(R.id.like_btn);
         likeButton.setOnClickListener(this);
-        // hide the like button if the user is not logged in
         if (User.isLoggedIn()) {
             likeButton.setVisibility(View.VISIBLE);
         }
-
-        // Set transition data
-        imageView.setTransitionName(VIEW_NAME_ARTICLE_IMAGE);
-        titleView.setTransitionName(VIEW_NAME_ARTICLE_TITLE);
-        summaryView.setTransitionName(VIEW_NAME_ARTICLE_SUMMARY);
     }
 
     @Override
@@ -109,7 +90,6 @@ public class ArticlesDetail extends AppCompatActivity implements View.OnClickLis
         return super.onCreateOptionsMenu(menu);
     }
 
-    // Actionbar click handler
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -125,7 +105,6 @@ public class ArticlesDetail extends AppCompatActivity implements View.OnClickLis
         }
     }
 
-    // Activity UI views click handler
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -142,8 +121,6 @@ public class ArticlesDetail extends AppCompatActivity implements View.OnClickLis
 
     private void setupDataPassback() {
         Intent backIntent = new Intent();
-        // Pass the article back to the view that wants a result.
-        // It would technically be cleaner to only pass relevant (changed) data instead of a copy of a parcel (which is a deep copy of the object)
         backIntent.putExtra(ArticlesMain.INTENT_ARTICLE, article);
         setResult(RESULT_OK, backIntent);
     }
@@ -154,16 +131,13 @@ public class ArticlesDetail extends AppCompatActivity implements View.OnClickLis
                 @Override
                 public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
                     Toast.makeText(context, getResources().getString(R.string.like), Toast.LENGTH_SHORT).show();
-                    // Set local copy data
                     article.setIsLiked(true);
-                    // Manually update ui, just in case
                     likeButton.setChecked(true);
                 }
 
                 @Override
                 public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
                     Toast.makeText(context, getResources().getString(R.string.error), Toast.LENGTH_SHORT).show();
-                    // Set the checked state forcefully to false since something went wrong
                     likeButton.setChecked(false);
                 }
             });
@@ -172,16 +146,13 @@ public class ArticlesDetail extends AppCompatActivity implements View.OnClickLis
                 @Override
                 public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
                     Toast.makeText(context, getResources().getString(R.string.unlike), Toast.LENGTH_SHORT).show();
-                    // Set local copy data
                     article.setIsLiked(false);
-                    // Manually update ui, just in case
                     likeButton.setChecked(false);
                 }
 
                 @Override
                 public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
                     Toast.makeText(context, getResources().getString(R.string.error), Toast.LENGTH_SHORT).show();
-                    // Set the checked state forcefully to false since something went wrong
                     likeButton.setChecked(true);
                 }
             });

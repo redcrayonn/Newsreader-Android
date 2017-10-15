@@ -58,11 +58,8 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleListItem> implem
 
     public void updateArticle(Article article) {
         for (int i = 0; i < items.size(); i++) {
-            // get the item for the collection based on the current loop index
             Article inList = getItem(i);
-            // check article id's
             if (inList.getId() == article.getId()) {
-                // found the item to update
                 items.set(i, article);
             }
         }
@@ -81,20 +78,16 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleListItem> implem
 
     @Override
     public ArticleListItem onCreateViewHolder(ViewGroup parent, int viewType) {
-        // Create the view and viewholder
         View view = layoutInflater.inflate(R.layout.article_listitem, parent, false);
         return new ArticleListItem(view);
     }
 
     @Override
     public void onBindViewHolder(final ArticleListItem holder, int position) {
-        // get model data from list based on position loaded
         final Article article = getItem(position);
 
-        // Fill view holder
         holder.fill(context, article);
 
-        // click handler for list item
         final int clickedItem = holder.getAdapterPosition();
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,12 +103,9 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleListItem> implem
     }
 
     public void onLoadMore() {
-        // add new item for continuous scrolling
-        // load from backend here
         if (loading) return;
         loading = true;
 
-        // Show the loading icon if the action takes longer than 'loadingThresholdMs'
         int loadingThresholdMs = 100;
         progressBar.postDelayed(new Runnable() {
             @Override
@@ -125,7 +115,6 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleListItem> implem
             }
         }, loadingThresholdMs);
 
-        // service layer call
         if (nextId < 0) {
             articleService.getArticles(User.getAuthtoken(), null, null, null, null).enqueue(this);
         } else {
@@ -138,9 +127,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleListItem> implem
         if (response.isSuccessful() && response.body() != null) {
             ArticleResult result = response.body();
             nextId = result.getNextId();
-            // Fill the list of items
             for (Article article : result.getResults()) {
-                // save to local collection
                 items.add(article);
             }
             notifyDataSetChanged();
@@ -150,15 +137,12 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleListItem> implem
 
     @Override
     public void onFailure(@NonNull Call<ArticleResult> call, @NonNull Throwable t) {
-        // log failure here
         Log.e(this.getClass().toString().toUpperCase(), "Tried to connect, but something went wrong", t);
         clearRequest();
-        //TODO: Show message here
     }
 
     private void clearRequest() {
         loading = false;
-        // Hide the progressbar
         progressBar.setVisibility(View.GONE);
     }
 }

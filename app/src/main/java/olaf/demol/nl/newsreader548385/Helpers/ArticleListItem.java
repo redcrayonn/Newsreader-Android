@@ -30,7 +30,6 @@ public class ArticleListItem extends RecyclerView.ViewHolder {
     }
 
     public void fill(final Context context, final Article article) {
-        // Image
         String url = article.getImage();
         Picasso.with(context)
                 .load(url)
@@ -49,15 +48,11 @@ public class ArticleListItem extends RecyclerView.ViewHolder {
                     }
                 });
 
-        // Title
         titleView.setText(article.getTitle());
 
-        // Favorite Icon. Only shown when an authtoken (aka user logged in) is found
         if (User.isLoggedIn() && article.getIsLiked()) {
-            // Draw a solid star based if article.isLiked
             titleView.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.ic_star_24dp, 0);
         } else {
-            // Do not draw a star if an article is not liked by the user or if the user is not logged in
             titleView.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, 0, 0);
         }
 
