@@ -1,8 +1,21 @@
 <resources>
-    <string name="app_name">Newsreader548385</string>
+    <string name="application_name">InHolland newsreader - 560825</string>
+    <string name="share">Deel</string>
+    <string name="api_url">http://inhollandbackend.azurewebsites.net/</string>
+    <string name="read_more">Lees meer</string>
+    <string name="login">Log in</string>
+    <string name="menu_open">Open</string>
+    <string name="menu_close">Closed</string>
 
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-
-    <string name="action_settings">Settings</string>
+    <string name="username_placeholder">Gebruikersnaam</string>
+    <string name="password_placeholder">Wachtwoord</string>
+    <string name="username_error">Er is geen gebruikersnaam ingevuld</string>
+    <string name="password_error">Er is geen wachtwoord ingevuld</string>
+    <string name="login_error">Er is iets misgegaan met het inloggen: %1$s</string>
+    <string name="login_success">Ingelogd</string>
+    <string name="like">Like</string>
+    <string name="unlike">Unlike</string>
+    <string name="placeholder_titel">Titel</string>
+    <string name="placeholder_excerpt">Beschrijving</string>
+    <string name="error">Er is iets misgegaan.</string>
 </resources>
