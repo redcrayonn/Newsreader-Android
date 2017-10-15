@@ -33,8 +33,8 @@ public class ArticleListItem extends RecyclerView.ViewHolder {
         String url = article.getImage();
         Picasso.with(context)
                 .load(url)
-                .error(R.drawable.ic_broken_image_24dp)
-                .placeholder(R.drawable.ic_image_24dp)
+                .error(R.drawable.ic_action_favorite)
+                .placeholder(R.drawable.ic_action_favorite)
                 .into(imageView, new com.squareup.picasso.Callback() {
                     @Override
                     public void onSuccess() {
@@ -51,7 +51,7 @@ public class ArticleListItem extends RecyclerView.ViewHolder {
         titleView.setText(article.getTitle());
 
         if (User.isLoggedIn() && article.getIsLiked()) {
-            titleView.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.ic_star_24dp, 0);
+            titleView.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.ic_action_favorite, 0);
         } else {
             titleView.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, 0, 0);
         }

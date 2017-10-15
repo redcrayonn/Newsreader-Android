@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primaryColor">#FFF</color>
-    <color name="primaryColorDark">#FFF</color>
-    <color name="secondaryColor">#E00279</color>
-    <color name="secondaryColorDark">#E00279</color>
-    <color name="commonColor">#BD0266</color>
+    <color name="primaryColor">#212121</color>
+    <color name="primaryColorDark">#000000</color>
+    <color name="secondaryColor">#ff5722</color>
+    <color name="secondaryColorDark">#c41c00</color>
+    <color name="commonColor">#ff8a50</color>
 </resources>

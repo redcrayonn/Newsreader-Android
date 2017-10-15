@@ -2,6 +2,7 @@ package olaf.demol.nl.newsreader548385.Activities;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -31,6 +32,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static java.security.AccessController.getContext;
+
 public class ArticlesDetail extends AppCompatActivity implements View.OnClickListener {
 
     public static final String VIEW_NAME_ARTICLE_IMAGE = "view_name_article_image";
@@ -56,6 +59,7 @@ public class ArticlesDetail extends AppCompatActivity implements View.OnClickLis
 
         WebClient rest = new WebClient();
         articleService = rest.createArticleService();
+
         initViews();
 
         Intent intent = getIntent();
@@ -75,6 +79,11 @@ public class ArticlesDetail extends AppCompatActivity implements View.OnClickLis
     private void initViews() {
         Button readMoreBtn = findViewById(R.id.read_more_btn);
         readMoreBtn.setOnClickListener(this);
+
+        imageView = findViewById(R.id.article_image);
+        publishView = findViewById(R.id.article_publish_date);
+        titleView = findViewById(R.id.article_title);
+        summaryView = findViewById(R.id.article_summary);
 
         likeButton = findViewById(R.id.like_btn);
         likeButton.setOnClickListener(this);
@@ -131,13 +140,16 @@ public class ArticlesDetail extends AppCompatActivity implements View.OnClickLis
                 @Override
                 public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
                     Toast.makeText(context, getResources().getString(R.string.like), Toast.LENGTH_SHORT).show();
+                    //set prop
                     article.setIsLiked(true);
+                    likeButton.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_action_favorite, 0);
                     likeButton.setChecked(true);
                 }
 
                 @Override
                 public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
                     Toast.makeText(context, getResources().getString(R.string.error), Toast.LENGTH_SHORT).show();
+                    likeButton.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_action_favorite_border, 0);
                     likeButton.setChecked(false);
                 }
             });
@@ -146,6 +158,7 @@ public class ArticlesDetail extends AppCompatActivity implements View.OnClickLis
                 @Override
                 public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
                     Toast.makeText(context, getResources().getString(R.string.unlike), Toast.LENGTH_SHORT).show();
+                    likeButton.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_action_favorite_border, 0);
                     article.setIsLiked(false);
                     likeButton.setChecked(false);
                 }
@@ -153,6 +166,7 @@ public class ArticlesDetail extends AppCompatActivity implements View.OnClickLis
                 @Override
                 public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
                     Toast.makeText(context, getResources().getString(R.string.error), Toast.LENGTH_SHORT).show();
+                    likeButton.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_action_favorite, 0);
                     likeButton.setChecked(true);
                 }
             });
@@ -161,8 +175,8 @@ public class ArticlesDetail extends AppCompatActivity implements View.OnClickLis
 
     public void openArticle() {
         Intent openUrlIntent = new Intent();
-        openUrlIntent.setAction(Intent.ACTION_VIEW);
         openUrlIntent.setData(Uri.parse(article.getUrl()));
+        openUrlIntent.setAction(Intent.ACTION_VIEW);
         startActivity(openUrlIntent);
     }
 

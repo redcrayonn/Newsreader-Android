@@ -27,10 +27,11 @@
                 android:layout_alignBottom="@+id/article_image"
                 android:layout_alignEnd="@+id/article_image"
                 android:layout_margin="10dp"
-                android:drawableStart="@drawable/toggle_like"
+                android:drawableRight="@drawable/ic_action_favorite_border"
                 android:textOff="@string/like"
                 android:textOn="@string/unlike"
-                android:visibility="gone" />
+                android:visibility="invisible"
+                />
         </RelativeLayout>
 
 

@@ -1,10 +1,12 @@
 package olaf.demol.nl.newsreader548385.Activities;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Pair;
 import android.view.MenuInflater;
 import android.view.View;
 import android.support.v4.widget.DrawerLayout;
@@ -128,9 +130,17 @@ public class ArticlesMain extends AppCompatActivity implements ListItemClick, Vi
     public void onItemClick(View view, int position) {
         Intent intent = new Intent(this, ArticlesDetail.class);
 
+        // Setup UI animation
+        ActivityOptions activityOptions = ActivityOptions.makeSceneTransitionAnimation(this,
+                new Pair<>(view.findViewById(R.id.article_image), ArticlesDetail.VIEW_NAME_ARTICLE_IMAGE),
+                new Pair<>(view.findViewById(R.id.article_title), ArticlesDetail.VIEW_NAME_ARTICLE_TITLE),
+                new Pair<>(view.findViewById(R.id.article_summary), ArticlesDetail.VIEW_NAME_ARTICLE_SUMMARY));
+
+        // Pass data into intent
         Article article = adapter.getItem(position);
         intent.putExtra(ArticlesMain.INTENT_ARTICLE, article);
-        startActivityForResult(intent, detailRequestCode);
+
+        startActivityForResult(intent, detailRequestCode, activityOptions.toBundle());
     }
 
     @Override

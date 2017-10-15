@@ -137,7 +137,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleListItem> implem
 
     @Override
     public void onFailure(@NonNull Call<ArticleResult> call, @NonNull Throwable t) {
-        Log.e(this.getClass().toString().toUpperCase(), "Tried to connect, but something went wrong", t);
+        Log.e(this.getClass().toString().toUpperCase(), "Something went wrong while connecting.", t);
         clearRequest();
     }
 
