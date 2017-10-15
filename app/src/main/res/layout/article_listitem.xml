@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:maxLines="1"
-            android:textColor="@color/secondaryColorDark"
+            android:textColor="@color/primaryColor"
             tools:text="Title" />
         <TextView
             android:id="@+id/article_summary"
@@ -37,7 +37,7 @@
             android:ellipsize="end"
             android:maxLines="3"
             android:scrollHorizontally="true"
-            android:textColor="@color/secondaryColorDark"
+            android:textColor="@color/primaryColor"
 
             tools:text="Summary - Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus." />
     </LinearLayout>

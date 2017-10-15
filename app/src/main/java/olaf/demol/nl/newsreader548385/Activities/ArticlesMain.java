@@ -126,6 +126,7 @@ public class ArticlesMain extends AppCompatActivity implements ListItemClick, Vi
                 return super.onOptionsItemSelected(item);
         }
     }
+    //NOTE: Deze fix was nodig voor een of andere bug...
     //noinspection RestrictedApi
     public void onItemClick(View view, int position) {
         Intent intent = new Intent(this, ArticlesDetail.class);

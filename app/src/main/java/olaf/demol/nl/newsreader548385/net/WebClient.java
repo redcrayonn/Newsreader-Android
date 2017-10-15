@@ -8,10 +8,6 @@ import olaf.demol.nl.newsreader548385.net.Services.UserService;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-/**
- * Created by olaf on 15-10-17.
- */
-
 public class WebClient {
 
     private Retrofit retrofit;

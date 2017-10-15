@@ -21,10 +21,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-/**
- * Created by olaf on 15-10-17.
- */
-
 public class ArticleAdapter extends RecyclerView.Adapter<ArticleListItem> implements Callback<ArticleResult> {
 
     // Property fields

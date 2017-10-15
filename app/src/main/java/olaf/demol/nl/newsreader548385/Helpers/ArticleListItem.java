@@ -13,10 +13,6 @@ import olaf.demol.nl.newsreader548385.R;
 import olaf.demol.nl.newsreader548385.net.Models.Article;
 import olaf.demol.nl.newsreader548385.net.Models.User;
 
-/**
- * Created by olaf on 15-10-17.
- */
-
 public class ArticleListItem extends RecyclerView.ViewHolder {
     private final TextView titleView;
     private final TextView descriptionView;

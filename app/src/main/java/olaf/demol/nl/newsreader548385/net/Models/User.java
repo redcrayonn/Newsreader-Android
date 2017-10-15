@@ -1,13 +1,10 @@
 package olaf.demol.nl.newsreader548385.net.Models;
 
-/**
- * Created by olaf on 15-10-17.
- */
-
 public class User {
 
     private static String authtoken;
     private String username;
+    //Moet natuurlijk beter dan dit ;)
     private String password;
 
     public User(String username, String password) {

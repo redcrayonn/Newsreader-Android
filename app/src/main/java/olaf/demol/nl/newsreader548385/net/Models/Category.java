@@ -1,9 +1,5 @@
 package olaf.demol.nl.newsreader548385.net.Models;
 
-/**
- * Created by olaf on 15-10-17.
- */
-
 public class Category {
     private int Id;
     private String Name;

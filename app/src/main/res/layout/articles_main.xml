@@ -39,7 +39,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="20dp"
-                android:visibility="gone" />
+                android:visibility="invisible" />
         </RelativeLayout>
     </LinearLayout>
 
@@ -47,17 +47,17 @@
         android:id="@+id/drawerPanel"
         android:layout_width="240dp"
         android:layout_height="match_parent"
+        android:choiceMode="singleChoice"
         android:layout_gravity="start"
         android:background="#eee"
-        android:choiceMode="singleChoice"
         android:orientation="vertical">
 
         <Button
             android:id="@+id/login_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
             android:text="@string/login" />
     </RelativeLayout>
 

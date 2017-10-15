@@ -6,7 +6,6 @@
     <string name="login">Log in</string>
     <string name="menu_open">Open</string>
     <string name="menu_close">Closed</string>
-
     <string name="username_placeholder">Gebruikersnaam</string>
     <string name="password_placeholder">Wachtwoord</string>
     <string name="username_error">Er is geen gebruikersnaam ingevuld</string>
@@ -18,4 +17,5 @@
     <string name="placeholder_titel">Titel</string>
     <string name="placeholder_excerpt">Beschrijving</string>
     <string name="error">Er is iets misgegaan.</string>
+    <string name="login_text">By logging into this application you automatically agree to the terms given by the creator; to give the student a good grade, unless he made a fool of himself.</string>
 </resources>

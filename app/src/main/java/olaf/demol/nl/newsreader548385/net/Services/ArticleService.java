@@ -9,10 +9,6 @@ import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
-/**
- * Created by olaf on 12-10-17.
- */
-
 public interface ArticleService {
 
     @GET("articles")

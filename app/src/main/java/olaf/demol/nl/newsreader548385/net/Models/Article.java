@@ -10,10 +10,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
-/**
- * Created by olaf on 15-10-17.
- */
-
 public class Article implements Parcelable {
     // Parcelable creator implementation
     public static final Creator<Article> CREATOR = new Creator<Article>() {
