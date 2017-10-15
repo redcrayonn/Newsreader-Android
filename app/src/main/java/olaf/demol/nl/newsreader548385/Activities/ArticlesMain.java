@@ -120,28 +120,22 @@ public class ArticlesMain extends AppCompatActivity implements ListItemClick, Vi
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        //Add future options
+        //Add future options for app menu
         switch (item.getItemId()) {
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
-    //NOTE: Deze fix was nodig voor een of andere bug...
+    //NOTE: Deze fix was nodig voor een of andere bug van de IDE...
     //noinspection RestrictedApi
     public void onItemClick(View view, int position) {
         Intent intent = new Intent(this, ArticlesDetail.class);
-
-        // Setup UI animation
-        ActivityOptions activityOptions = ActivityOptions.makeSceneTransitionAnimation(this,
-                new Pair<>(view.findViewById(R.id.article_image), ArticlesDetail.VIEW_NAME_ARTICLE_IMAGE),
-                new Pair<>(view.findViewById(R.id.article_title), ArticlesDetail.VIEW_NAME_ARTICLE_TITLE),
-                new Pair<>(view.findViewById(R.id.article_summary), ArticlesDetail.VIEW_NAME_ARTICLE_SUMMARY));
 
         // Pass data into intent
         Article article = adapter.getItem(position);
         intent.putExtra(ArticlesMain.INTENT_ARTICLE, article);
 
-        startActivityForResult(intent, detailRequestCode, activityOptions.toBundle());
+        startActivityForResult(intent, detailRequestCode);
     }
 
     @Override
